@@ -18,7 +18,12 @@ public class DatabaseConfig {
 
     private static Logger log = LoggerFactory.getLogger(DatabaseConfig.class);
 
-    public static void initDbSchema() {
+    public static void initDb() {
+        initDbSchema();
+        initDbData();
+    }
+
+    private static void initDbSchema() {
         log.info("Drop and CREATE database tables");
 
         JdbcTemplate jdbcTemplate = jdbcTemplate();
@@ -37,7 +42,7 @@ public class DatabaseConfig {
         """);
     }
 
-    public static void initDbData() {
+    private static void initDbData() {
         try {
             log.info("Populate table MOVIES");
             JdbcTemplate jdbcTemplate = jdbcTemplate();

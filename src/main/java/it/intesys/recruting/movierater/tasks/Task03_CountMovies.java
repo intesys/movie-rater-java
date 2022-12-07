@@ -1,5 +1,6 @@
 package it.intesys.recruting.movierater.tasks;
 
+import it.intesys.recruting.movierater.DatabaseConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,6 +13,8 @@ public class Task03_CountMovies implements Task {
 
     @Override
     public void run() {
+        DatabaseConfig.initDb();
+
         logger.info("In the database there are {} movies", countMovies());
     }
 

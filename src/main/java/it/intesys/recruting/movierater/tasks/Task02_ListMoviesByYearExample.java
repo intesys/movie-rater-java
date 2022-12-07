@@ -1,5 +1,6 @@
 package it.intesys.recruting.movierater.tasks;
 
+import it.intesys.recruting.movierater.DatabaseConfig;
 import it.intesys.recruting.movierater.Movie;
 import it.intesys.recruting.movierater.MovieRepository;
 import org.slf4j.Logger;
@@ -13,9 +14,9 @@ public class Task02_ListMoviesByYearExample implements Task {
 
     @Override
     public void run() {
+        DatabaseConfig.initDb();
+
         List<Movie> allMovies = MovieRepository.getMovieByYear(1988);
-
-
         for (Movie movie : allMovies) {
             logger.info("Found movie {} directed by {} in {}, starring {}",
                     movie.getTitle(), movie.getDirector(), movie.getYear(), movie.getActors());

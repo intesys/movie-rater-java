@@ -1,5 +1,6 @@
 package it.intesys.recruting.movierater.tasks;
 
+import it.intesys.recruting.movierater.DatabaseConfig;
 import it.intesys.recruting.movierater.Movie;
 import it.intesys.recruting.movierater.MovieRepository;
 import org.slf4j.Logger;
@@ -13,6 +14,9 @@ public class Task01_ListMoviesExample implements Task {
 
     @Override
     public void run() {
+
+        DatabaseConfig.initDb();
+
         List<Movie> allMovies = MovieRepository.getAllMovies();
 
         for (Movie movie : allMovies) {
