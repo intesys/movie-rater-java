@@ -12,6 +12,10 @@ public class Task03_CountMovies implements Task {
 
     @Override
     public void run() {
+        logger.info("In the database there are {} movies", countMovies());
+    }
 
+    public long countMovies() {
+        return 0L; // todo
     }
 }
