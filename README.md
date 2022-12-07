@@ -1,13 +1,15 @@
-# Movie Tasks
+# Movie Rater
 
-Progetto java è un'applicazione web che mostra ai visitatori 2 film scelti in modo casuale e permette loro di scegliere 
-il preferito tra i 2. Ogni volta che un utente vota uno dei 2 film l'applicazione aggiorna il contatore dei voti per il singolo film e propone altri 2 film sempre scelti in maniera casuale nel database.
+Progetto java predisposto per leggere da un database SQL contenente una lista di film.
+
+![movie-table.png](movie-table.png)
 
 ## Dettagli Tecnici
 
 - Progetto Maven
 - Java 17 (es. https://adoptium.net/temurin/releases/?version=17)
-- Database sqlite creato e popolato automaticamente all'avvio dell'applicazione. Il file `movies.sqlite` è presente nella root del progetto.
+- Database sqlite creato e popolato automaticamente all'avvio dell'applicazione. 
+Il file `movies.sqlite` viene creato automaticamente all'avvio dell'applicazione 
 
 ## Avvio dell'applicazione
 
@@ -48,7 +50,7 @@ Si richiede quindi di implementare le seguenti funzionalità:
 
 1. Completare il task `Task03_CountMovies`
 1. Completare il task `Task04_RandomMovie`
- 
+1. Altri task scelti e/o inviati dal referente Intesys 
 
 
 ## Elementi considerati per la valutazione
