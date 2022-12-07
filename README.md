@@ -10,6 +10,8 @@ Progetto java predisposto per leggere da un database SQL contenente una lista di
 - Java 17 (es. https://adoptium.net/temurin/releases/?version=17)
 - Database sqlite creato e popolato automaticamente all'avvio dell'applicazione. 
 Il file `movies.sqlite` viene creato automaticamente all'avvio dell'applicazione 
+- Libreria [JdbcTemplate](https://docs.spring.io/spring-framework/docs/5.3.9/reference/html/data-access.html#jdbc-JdbcTemplate)
+preconfigurata per l'accesso ai dati via SQL
 
 ## Avvio dell'applicazione
 
