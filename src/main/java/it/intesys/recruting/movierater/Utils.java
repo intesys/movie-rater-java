@@ -14,19 +14,23 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.Properties;
 
-public class DatabaseConfig {
+public class Utils {
 
-    private static Logger log = LoggerFactory.getLogger(DatabaseConfig.class);
+    private static final Logger log = LoggerFactory.getLogger(Utils.class);
 
-    public static void initDb() {
+    public static final DataSource dataSource = dataSource();
+    public static final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+    public static void dropAndInitDb() {
+        log.info("");
+        log.info("Dropping and creating database");
         initDbSchema();
         initDbData();
     }
 
     private static void initDbSchema() {
-        log.info("Drop and CREATE database tables");
+        log.debug("Drop and CREATE database tables");
 
-        JdbcTemplate jdbcTemplate = jdbcTemplate();
         jdbcTemplate.execute("drop table if exists movie");
         jdbcTemplate.execute("""
                 CREATE TABLE movie
@@ -44,14 +48,13 @@ public class DatabaseConfig {
 
     private static void initDbData() {
         try {
-            log.info("Populate table MOVIES");
-            JdbcTemplate jdbcTemplate = jdbcTemplate();
+            log.debug("Populate table MOVIES");
             List<String> sqlInserts = Files.readAllLines(
                     Path.of(ClassLoader.getSystemResource("movies.sql").toURI()));
             for (String sqlInsert : sqlInserts) {
                 jdbcTemplate.execute(sqlInsert);
             }
-            log.info("Table MOVIES populated with {} movies", sqlInserts.size());
+            log.debug("Table MOVIES populated with {} movies", sqlInserts.size());
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -59,9 +62,6 @@ public class DatabaseConfig {
 
     }
 
-    public static JdbcTemplate jdbcTemplate() {
-        return new JdbcTemplate(dataSource());
-    }
     private static DataSource dataSource() {
         Properties appProperties = appProperties();
         HikariConfig hikariConfig = new HikariConfig();
@@ -75,7 +75,7 @@ public class DatabaseConfig {
     private static Properties appProperties() {
 
         Properties prop = new Properties();
-        try (InputStream input = DatabaseConfig.class.getClassLoader().getResourceAsStream("application.properties")) {
+        try (InputStream input = Utils.class.getClassLoader().getResourceAsStream("application.properties")) {
             prop.load(input);
         } catch (IOException ex) {
             throw new IllegalStateException("Property load fail", ex);

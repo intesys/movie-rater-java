@@ -7,22 +7,19 @@ import java.util.List;
 
 public class MovieRepository {
 
-    private static JdbcTemplate jdbcTemplate = DatabaseConfig.jdbcTemplate();
+    private final JdbcTemplate jdbcTemplate;
 
-    public static List<Movie> getAllMovies() {
-        return jdbcTemplate.query("""
-                SELECT ID,
-                          TITLE,
-                          YEAR,
-                          GENRE,
-                          DIRECTOR,
-                          ACTORS,
-                          COUNTRY
-                   from MOVIE
-                """, new BeanPropertyRowMapper<>(Movie.class));
+    public MovieRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
-    public static List<Movie> getMovieByYear(int year) {
+    public List<Movie> getAllMovies() {
+        return jdbcTemplate.query(
+                "SELECT ID, TITLE, YEAR, GENRE, DIRECTOR, ACTORS, COUNTRY from MOVIE",
+                new BeanPropertyRowMapper<>(Movie.class));
+    }
+
+    public List<Movie> getMovieByYear(int year) {
         return jdbcTemplate.query("""
                 SELECT ID,
                           TITLE,
