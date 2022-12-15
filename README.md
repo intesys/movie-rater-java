@@ -43,8 +43,10 @@ Per ogni task da completare creare una nuova classe nel package `it.intesys.recr
 
 ## Consegna del codice
 
-Inserire nei messaggi di commit il numero del task ed effettuare il push delle modifiche direttamente su questo repository.
-Al termine del lavoro avvisare il referente di Intesys.
+Clonare questo repository e committare in locale i task. Consegnare il codice al referente intesys:
+1. inviando al referente Intesys il progetto in un file .zip contenente la cartella .git
+2. oppure creando un repository privato su github e condividendolo con l'account github del referente Intesys
+
 
 ## Task
 
